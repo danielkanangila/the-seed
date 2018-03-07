@@ -1,0 +1,117 @@
+<div id="contextWrap">
+    <div class="ui sidebar vertical left menu overlay  borderless visible sidemenu inverted  black" style="transition-duration: 0.1s; overflow: hidden; outline: none;"
+        data-color="grey" tabindex="0">
+        <a class="item logo" href="/">
+            <img src="/static/img/theSeedLogo.jpg" alt="stagblogo" height="51px" width="178px">
+            <img src="/static/img/logo.min.png" alt="stagblogo" class="displaynone">
+        </a>
+        <!-- sidebar-full  -->
+        <div class="ui accordion inverted">
+            <router-link :to="{name: 'dashboard'}" class="title item" href="#">
+                <i class="dashboard titleIcon icon"></i> Dashboard
+            </router-link>
+            <div class="content"></div>
+            <router-link :to="{name: 'library'}" class="title item" href="#">
+                <i class="folder outline titleIcon icon"></i>Library
+            </router-link>
+            <div class="content"></div>
+            <router-link :to="{name: 'reclain'}" class="title item" href="#">
+                <i class="recycle titleIcon icon"></i>Reclain Brochure
+            </router-link>
+            <div class="content"></div>
+            <router-link :to="{name: 'clone'}" class="title item" href="#">
+                <i class="clone titleIcon icon"></i>Clone Brochure
+            </router-link>
+            <div class="content"></div>
+        </div>
+        <!-- /sidebar-full  -->
+        <!-- sidebar-icon  -->
+        <div class="ui dropdown item displaynone scrolling" tabindex="0">
+            <span>Dashboard</span>
+            <i class="dashboard icon"></i>
+            <div class="menu" tabindex="-1" style="overflow: hidden; outline: none;">
+                <router-link :to="{name: 'dashboard'}" class="item">
+                    Dashboard
+                </router-link>
+            </div>
+        </div>
+        <div class="ui dropdown item displaynone scrolling" tabindex="0">
+            <span>Library</span>
+            <i class="folder outline icon"></i>
+            <div class="menu" tabindex="-1" style="overflow: hidden; outline: none;">
+                <router-link :to="{name: 'library'}" class="item">
+                    Library
+                </router-link>
+            </div>
+        </div>
+        <div class="ui dropdown item displaynone scrolling" tabindex="0">
+            <span>Reclain Brochure</span>
+            <i class="recycle icon"></i>
+            <div class="menu" tabindex="-1" style="overflow: hidden; outline: none;">
+                <router-link :to="{name: 'reclain'}" class="item">
+                    Reclain Brochure
+                </router-link>
+            </div>
+        </div>
+        <div class="ui dropdown item displaynone scrolling" tabindex="0">
+            <span>Clone Brochure</span>
+            <i class="clone icon"></i>
+            <div class="menu" tabindex="-1" style="overflow: hidden; outline: none;">
+                <router-link :to="{name: 'clone'}" class="item">
+                    Clone Brochure
+                </router-link>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <!-- /sidebar-icon  -->
+    </div>
+    <!-- /sidebar -->
+    <!-- pusher-pushable -->
+    <div class="pusher pushable">
+        <!-- pusher -->
+        <div class="pusher">
+            <div class="navslide navwrap">
+                <div class="ui menu icon borderless grid" data-color="inverted white">
+                    <a class="item labeled openbtn">
+                        <i class="sidebar big icon"></i>
+                    </a>
+                    <div class="item ui colhidden">
+                        <div class="ui icon input">
+                            <input type="text" placeholder="Search...">
+                            <i class="search icon"></i>
+                        </div>
+                    </div>
+                    <div class="right menu colhidden">
+                        <div class="ui dropdown item" tabindex="0">
+                            Language
+                            <i class="dropdown icon"></i>
+                            <div class="menu" tabindex="-1">
+                                <a class="item">
+                                    <i class="united kingdom flag"></i>English</a>
+                                <a class="item">
+                                    <i class="france flag"></i>French</a>
+                            </div>
+                        </div>
+                        <div class="ui dropdown item" tabindex="0">
+                            <img class="ui mini circular image" src="/static/img/user_0.jpg" alt="user">
+                            <div class="menu" tabindex="-1">
+                                <a class="item" href="#">Inbox</a>
+                                <a class="item" href="#">Profile</a>
+                                <a class="item" href="#">Settings</a>
+                                <div class="ui divider"></div>
+                                <a class="item">Need Help?</a>
+                                <a class="item" @click.prevent="logout()">Sign Out</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /navbar -->
+            <div class="mainWrap navslide">
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+    <!-- /pusher-pushable -->
+</div>

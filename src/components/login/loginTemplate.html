@@ -1,0 +1,24 @@
+<div id="home">
+    <div class="login-box">
+        <div class="glass">
+            <div class="img-cicular user"></div>
+            <h3>Sign in here</h3>
+            <form class="mui-form">
+                <div class="mui-textfield mui-textfield--float-label" v-if="step == 1">
+                    <input v-model="auth.email" v-validate="'required|email'" name="email" type="text" :class="{'error': auth.hasErrors}">
+                    <label :class="{'error': auth.hasErrors}">
+                        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Email</label>
+                    <span :class="{'help is-danger': auth.hasErrors}" v-if="auth.hasErrors" v-html="auth.message"></span>
+                </div>
+                <div class="mui-textfield mui-textfield--float-label" v-if="step == 2">
+                    <input v-model="auth.password" name="password" type="password" :class="{'error': errors.has('email') || auth.hasErrors}">
+                    <label :class="{'error': errors.has('email') || auth.hasErrors}">
+                        <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp; Password</label>
+                    <span :class="{'help is-danger': auth.hasErrors}" v-if="auth.hasErrors" v-html="auth.message"></span>
+                </div>
+                <button @click.prevent="login()" type="submit" class="mui-btn mui-btn--raised mui-btn--primary" :disabled="isProcess">{{ btnTitle }}</button>
+            </form>
+            <a href="#">Contact system admin.</a>
+        </div>
+    </div>
+</div>

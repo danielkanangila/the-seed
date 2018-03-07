@@ -1,0 +1,20 @@
+<div id="brochureViewer">
+    <div class="ui segment">
+        <h3 class="header">{{ title }}</h3>
+        <small class="dtl">{{ date }} - {{ isbn }}</small>
+    </div>
+    <div class="ui divider"></div>
+    <div class="ui list form">
+        <div style="font-size: 15px;" class="item" v-for="(content, i) in contents" :key="i" @dblclick="onEditable(content.paragraph_number)">
+            <p v-if="isEdit.id != content.paragraph_number">
+                <span class="prn">{{ content.paragraph_number}}</span> {{ content.paragraph_content }}
+            </p>
+            <textarea 
+                id="content.paragraph_number"
+                v-model="content.paragraph_content"
+                v-on:keydup.tab="onBlured()"
+                v-if="isEdit.id == content.paragraph_number">
+            </textarea>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+@import "~vue-wysiwyg/dist/vueWysiwyg.css";
+p {
+    color: #24292e;
+  }
+  .prn {
+    font-size: 10px;
+    color: #7f8c8d;
+    margin-right: 15px;
+  }
+  .dtl {
+    color: #7f8c8d;
+  }

@@ -1,0 +1,133 @@
+<div id="reclain-brochure" class="ui equal width left aligned padded grid stackable">
+  <div class="stretched row">
+    <!-- detail-box -->
+    <div class="sixteen wide tablet twelve wide computer column">
+      <div class="ui segments">
+        <div class="ui segment no-padding-bottom">
+          <h5 class="ui left floated header">
+            Resource Details
+          </h5>
+          <input type="file" id="selectedXmlFile" style="display: none;" @change="onXmlSelected" />
+          <div class="ui right floated small basic icon buttons">
+            <button class="ui button" onclick="document.getElementById('selectedXmlFile').click();">
+              <i class="upload icon"></i>
+            </button>
+            <button @click.prevent="onEdit" class="ui button">
+              <i class="edit icon"></i>
+            </button>
+            <button @click.prevent="withRaw()" class="ui button">
+              <i class="icon" :class="{'unhide': !showWithRaw, 'hide': showWithRaw}"></i>
+            </button>
+            <button @click.prevent="onSave" class="ui button">
+              <i class="save icon"></i>
+            </button>
+            <button @click.prevent="onDelete" class="ui button">
+              <i class="trash icon"></i>
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="ui segment left aligned">
+          <div class="ui labeled fluid input">
+            <div class="ui label">Title</div>
+            <input v-model="resource.title" type="text" name="title" placeholder="Title">
+          </div>
+          <div class="ui form grid">
+            <div class="four column row">
+              <div class="field computer column">
+                <label>Date</label>
+                <input v-model="resource.origindate" type="date" name="orginaldate">
+              </div>
+              <div class="field computer column">
+                <label>City</label>
+                <input v-model="resource.city" type="text" name="city" placeholder="City">
+              </div>
+              <div class="field computer column">
+                <label>RS</label>
+                <input v-model="files.range.start" type="number" name="range_start" placeholder="Start">
+              </div>
+              <div class="field computer column">
+                <label>RE</label>
+                <input v-model="files.range.end" type="number" name="range_end" placeholder="End">
+              </div>
+            </div>
+          </div>
+          <div class="ui form">
+            <div class="field">
+              <label>Description</label>
+              <textarea style="overflow: hidden;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /detail-box -->
+    <!-- cover-box -->
+    <div class="sixteen wide tablet four wide computer column">
+      <div class="ui segments">
+        <div class="ui segment no-padding-bottom">
+          <h5 class="ui left floated header">
+            Cover
+          </h5>
+          <input type="file" id="selectedCover" @change="onCoverSelected" style="display: none;" />
+          <div class="ui right floated small basic icon buttons">
+            <button class="ui button" onclick="document.getElementById('selectedCover').click();">
+              <i class="upload icon"></i>
+            </button>
+            <button class="ui button">
+              <i class="save icon"></i>
+            </button>
+            <button class="ui button">
+              <i class="trash icon"></i>
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="ui segment left aligned">
+          <div class="ui card" style="width: 150px;">
+            <div class="image">
+              <div v-if="cover.isSaved" class="ui green ribbon label">Saved</div>
+              <img :src="cover.url" style="width: 150px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /cover-box -->
+  </div>
+  <!-- /first-row -->
+  <!-- content-box -->
+  <div v-if="!showWithRaw" class="stretched row">
+    <div class="sixteen wide tablet sixteen wide computer column">
+      <div class="ui segment">
+        <div v-if="_errors.has('mp')" class="ui red ribbon label">Error [MP]: {{ _errors.find('mp') }}</div>
+        <div v-if="isUploaded || isSaved" class="ui text" v-html="files.raw_html"></div>
+        <viewer 
+          v-if="isEdit" 
+          :date="resource.origindate" 
+          :title="resource.title"
+          :isbn="resource.isbn"
+          :contents="contents"></viewer>
+      </div>
+    </div>
+  </div>
+  <div v-if="showWithRaw" class="stretched row">
+    <div class="sixteen wide tablet eight wide computer column">
+      <div class="ui segment">
+        <div v-if="_errors.has('mp')" class="ui red ribbon label">Error [MP]: {{ _errors.find('mp') }}</div>
+        <div v-if="isUploaded || isSaved" class="ui text" v-html="files.raw_html"></div>
+        <viewer 
+          v-if="isEdit" 
+          :date="resource.origindate" 
+          :title="resource.title"
+          :isbn="resource.isbn"
+          :contents="contents"></viewer>
+      </div>
+    </div>
+    <div class="sixteen wide tablet eight wide computer column">
+      <div class="ui segment">
+          <div style="font-size: 14px;" v-html="files.raw_html"></div>
+      </div>
+    </div>
+  </div>
+</div>
